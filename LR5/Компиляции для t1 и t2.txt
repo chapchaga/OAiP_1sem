@@ -1,0 +1,15 @@
+Компиляция статической библиотеки(названия для t1 и др. кроме t2)
+
+g++ -c t1.cpp -o t1.o
+ar rcs t1.lib t1.o
+g++ main.cpp -o a.exe t1.lib
+
+Компиляция для DLL(для t2):
+g++ -c mylib.cpp -o mylib.o
+g++ -c main.cpp -o main.o
+
+g++ -shared -o mylib.dll mylib.o 
+g++ main.cpp -L. -lmylib -o a.exe
+
+.dll → нужен для запуска программы
+./a → нужен для компиляции программы, которая использует DLL
